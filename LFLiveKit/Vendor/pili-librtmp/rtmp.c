@@ -45,6 +45,7 @@ TLS_CTX RTMP_TLS_ctx;
 
 #define RTMP_SIG_SIZE 1536
 #define RTMP_LARGE_HEADER_SIZE 12
+#define DEFAULT_PACKET_SIZE 2048
 
 static const int packetSize[] = {12, 8, 4, 1};
 
@@ -1597,7 +1598,7 @@ static int
 SendBGHasStream(PILI_RTMP *r, double dId, AVal *playpath)
 {
   PILI_RTMPPacket packet;
-  char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+  char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
   char *enc;
 
   packet.m_nChannel = 0x03;	/* control channel (invoke) */
@@ -1683,7 +1684,7 @@ SAVC(releaseStream);
 static int
     SendReleaseStream(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x03; /* control channel (invoke) */
@@ -1712,7 +1713,7 @@ SAVC(FCPublish);
 static int
     SendFCPublish(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x03; /* control channel (invoke) */
@@ -1741,7 +1742,7 @@ SAVC(FCUnpublish);
 static int
     SendFCUnpublish(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x03; /* control channel (invoke) */
@@ -1772,7 +1773,7 @@ SAVC(record);
 static int
     SendPublish(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x04; /* source channel (invoke) */
@@ -2037,7 +2038,7 @@ SAVC(play);
 static int
     SendPlay(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x08; /* we make 8 our stream channel */
@@ -2102,7 +2103,7 @@ SAVC(0);
 static int
     SendPlaylist(PILI_RTMP *r, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x08; /* we make 8 our stream channel */
@@ -2139,7 +2140,7 @@ static int
 static int
     SendSecureTokenResponse(PILI_RTMP *r, AVal *resp, RTMPError *error) {
     PILI_RTMPPacket packet;
-    char pbuf[1024], *pend = pbuf + sizeof(pbuf);
+    char pbuf[DEFAULT_PACKET_SIZE], *pend = pbuf + sizeof(pbuf);
     char *enc;
 
     packet.m_nChannel = 0x03; /* control channel (invoke) */
